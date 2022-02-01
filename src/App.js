@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddNewMovie from "./Components/AddNewMovie";
+import DetailsCard from "./Components/DetailsCard";
 import FilterRate from "./Components/FilterRate";
 import MovieList from "./Components/MovieList";
 import NavBar from "./Components/NavBar";
@@ -15,8 +17,26 @@ function App() {
     <div>
       <NavBar inputSearch={inputSearch} setInputSearch={setInputSearch} />
       <FilterRate rate={rate} setRate={setRate} isRating={false} />
-      <AddNewMovie movie={movies} setMovie={setMovies} />
-      <MovieList movie={movies} inputSearch={inputSearch} rating={rate} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <AddNewMovie movie={movies} setMovie={setMovies} />
+              <MovieList
+                movie={movies}
+                inputSearch={inputSearch}
+                rating={rate}
+              />
+            </div>
+          }
+        />
+
+        <Route
+          path="/movieList/detailsCard/:description"
+          element={<DetailsCard />}
+        />
+      </Routes>
     </div>
   );
 }

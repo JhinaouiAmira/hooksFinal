@@ -1,6 +1,10 @@
 import React from "react";
-import {Card} from "react-bootstrap"
+import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+// import {moviesData} from "../Fake/data"
+// import { Link } from "react-router-dom";
 function MovieCard({ x }) {
+  let navigate=useNavigate();
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={x.posterUrl} />
@@ -10,6 +14,9 @@ function MovieCard({ x }) {
         <Card.Text>{x.rate}</Card.Text>
         <Card.Text>{x.trailer}</Card.Text>
       </Card.Body>
+      {/* <Link to="/movieList/detailsCard/:description">
+      </Link> */}
+      <Button onClick={()=>navigate(`/movieList/detailsCard/${x.description}`)}>details</Button>
     </Card>
   );
 }
